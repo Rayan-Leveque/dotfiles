@@ -17,7 +17,7 @@ Treat AskUserQuestion as a first-class tool — use it liberally when uncertain 
 
 ## Documentation
 
-After any substantial change to a codebase (new feature, config change, pipeline update, architecture decision), update the project's local CLAUDE.md to reflect the current state — so future sessions start with an accurate picture.
+After any substantial change to a codebase (new feature, config change, pipeline update, architecture decision), update the project's local CLAUDE.md **and README** to reflect the current state — including how to run scripts, launch commands, and any changed entry points — so future sessions start with an accurate picture.
 
 ## Karpathy Guidelines
 
