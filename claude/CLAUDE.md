@@ -19,6 +19,11 @@ Treat AskUserQuestion as a first-class tool — use it liberally when uncertain 
 
 After any substantial change to a codebase (new feature, config change, pipeline update, architecture decision), update the project's local CLAUDE.md **and README** to reflect the current state — including how to run scripts, launch commands, and any changed entry points — so future sessions start with an accurate picture.
 
+When creating or updating a project CLAUDE.md, also ensure it is tracked in the dotfiles repo:
+1. If `~/dotfiles/claude/projects/<project_name>/CLAUDE.md` doesn't exist, create it and replace the local file with a symlink pointing to it.
+2. If the project is not listed in `~/dotfiles/setup.md`, add it under the `## Projets` section.
+3. Commit and push `~/dotfiles` after any such change (`cd ~/dotfiles && git commit -am "..." && git push`).
+
 ## Karpathy Guidelines
 
 Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.
