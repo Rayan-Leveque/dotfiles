@@ -26,4 +26,8 @@ PROMPT="$(cat "$DOTFILES/setup.md")"
 TARGET="${1:-$DOTFILES}"
 cd "$TARGET"
 
-claude "$PROMPT"
+if command -v yoloclaude &>/dev/null; then
+  yoloclaude "$PROMPT"
+else
+  claude "$PROMPT"
+fi
