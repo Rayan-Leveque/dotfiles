@@ -41,8 +41,10 @@ Cellules clés :
 - Cell 16 : tests statistiques (McNemar + Mann-Whitney)
 - Cell 18 : dashboard récapitulatif 2×2
 
+`notebooks/model_comparison.ipynb` — notebook dédié à la comparaison inter-modèles (Qwen3.6 / Qwen3.7-max / Gemma) et à l'extraction de connaissances (slope CSP, verbalisation, text-mining des marqueurs, IAT mono-modèle). Régénérable via `notebooks/_build_model_comparison.py`.
+
 ## Prochaines étapes
 
 - [ ] Obtenir `NOVITA_API_KEY` → lancer run Novita (Qwen3.7-max + Mistral-Nemo)
 - [ ] Compléter run Gemma-4-31B (GPUs libres chez pierre)
-- [ ] Ajouter figures multi-modèles au notebook
+- [x] Ajouter figures multi-modèles au notebook
