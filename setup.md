@@ -22,3 +22,4 @@
 ## Projets
 
 - `LLM_Bias` — pipeline biais LLMs, ethnicity × SES
+- `llm_bridage_modeles` — bridage LLM sur restitution de contenu sensible (idextend)
