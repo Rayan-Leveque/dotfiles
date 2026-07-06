@@ -8,13 +8,20 @@
    ```
    Si des commits sont en retard (`behind`), fais `git pull`.
 
-2. **Pour chaque projet listé dans `## Projets`** :
+2. **Vérifie le CLAUDE.md global** (`~/.claude/CLAUDE.md`) :
+   - Il doit être un symlink vers `~/dotfiles/claude/CLAUDE.md`.
+   - Si le symlink n'existe pas : crée-le avec `ln -s ~/dotfiles/claude/CLAUDE.md ~/.claude/CLAUDE.md`
+   - Si le fichier existe déjà mais n'est pas un symlink : demande avant d'écraser
+   - Vérifie aussi qu'il est bien suivi par git : `cd ~/dotfiles && git ls-files claude/CLAUDE.md`
+
+3. **Pour chaque projet listé dans `## Projets`** :
    - Cherche où ce projet existe sur cette machine : `find ~ -maxdepth 6 -name <projet> -type d 2>/dev/null`
    - Si trouvé et que le symlink `<chemin>/CLAUDE.md` n'existe pas encore : crée-le avec `ln -s ~/dotfiles/claude/projects/<projet>/CLAUDE.md <chemin>/CLAUDE.md`
    - Si le fichier existe déjà mais n'est pas un symlink : demande avant d'écraser
    - Si non trouvé : note-le comme absent sur cette machine
 
-3. **Affiche un récapitulatif** :
+4. **Affiche un récapitulatif** :
+   - ✓ CLAUDE.md global : symlink OK / créé
    - ✓ Déjà à jour / mis à jour
    - ✓ Symlinks créés
    - ✗ Projets non trouvés sur cette machine
