@@ -17,7 +17,9 @@ LuaLaTeX + biber, classe `MemoireMimo.cls` (à ne pas éditer sans raison forte)
 lualatex MonMemoire.tex && biber MonMemoire && lualatex MonMemoire.tex
 ```
 
-Binaires TeX dans `~/.local/bin` (dont `biber` 2.21), paquets utilisateur dans `~/texmf` (`doublestroke`, `biblatex` 3.21, `luaotfload`…). Ne pas committer les fichiers auto-générés (`.aux`, `.bbl`, `.bcf`, `.log`, `.out`, `.toc`, `.run.xml`, `.idx`, `.pdf`) : vérifier avant `git add`.
+Distribution **TinyTeX** dans `~/.TinyTeX` (binaires dans `~/.TinyTeX/bin/x86_64-linux`, à mettre dans le `PATH` ; `TEXMFHOME=~/.TinyTeX/texmf-local`), `biber` 2.21. Paquets installés à la demande via `tlmgr install <paquet>` (si `tlmgr` refuse : `tlmgr update --self` d'abord, puis `mktexlsr`). Au-delà du TinyTeX de base, ce mémoire requiert : `aeguill`, `doublestroke`, `mdwtools` (mathenv), `dpfloat`, `biblatex`, `biber`, `tcolorbox`, `titlesec`, `lettrine`, `tex-gyre`, `tex-gyre-math`, `rsfs`, `pdfcol`, `makecell`, `enumitem`, `placeins`, `supertabular`, `tocbibind`, `lipsum`.
+
+**Build après chaque modification du manuscrit** : relancer le cycle complet ci-dessus, vérifier que les 3 passes rendent exit 0 et qu'aucun `undefined`/`Rerun` ne subsiste dans le log. Ne pas committer les fichiers auto-générés (`.aux`, `.bbl`, `.bcf`, `.log`, `.out`, `.toc`, `.run.xml`, `.idx`, `.pdf`) : vérifier avant `git add`.
 
 ## Structure
 
