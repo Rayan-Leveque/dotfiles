@@ -9,7 +9,9 @@ Documents de pilotage, à lire avant toute rédaction :
 
 Skill projet : `/handoff` (`.claude/skills/handoff/SKILL.md`) écrit `HANDOFF.md` (état des lieux de reprise) et met à jour `TODO.md` en fin de session.
 
-Les expériences (données, notebooks, figures sources) vivent hors de ce repo, dans `../Memoire_experiment/` : `LLM_Bias/` (volet biais H1–H4, H6, H7 : notebooks `h1_*.ipynb` à `h7_*.ipynb`, données `data/results/behavioral_results_*.csv`), `IAT_replication/` (H5 : D-score, sorties dans `output/`), `logprobs_evaluation/` (volet confiance). `../Projets_M2/dm_python_louis/` est une app Streamlit de visualisation sur une copie des mêmes données (plots Plotly descriptifs, sans tests statistiques ni export statique).
+Plugin installé (2026-07-08) : **academic-research-skills** (ARS, marketplace `Imbad0202/academic-research-skills`, CC BY-NC 4.0) — commandes `/ars-*` (`/ars-lit-review`, `/ars-citation-check`, `/ars-plan`, `/ars-reviewer`…). Usage ciblé : bibliographie et relecture. Méthodologie pensée pour l'anglais/APA : cadrer chaque demande avec les conventions du mémoire (biblatex, `\autocite`, terminologie ci-dessous), qui priment.
+
+Les expériences (données, notebooks, figures sources) vivent hors de ce repo, dans `../Memoire_experiment/` : `LLM_Bias/` (volet biais H1–H4, H6, H7 : notebooks `h1_*.ipynb` à `h7_*.ipynb`, données `data/results/behavioral_results_*.csv`), `IAT_replication/` (H5 : D-score, sorties dans `output/`), `logprobs_evaluation/` (volet confiance). `../Projets_M2/dm_python_louis/` est une app Streamlit de visualisation sur une copie des mêmes données (plots Plotly descriptifs, sans tests statistiques) — **visus de référence du ch. 4**, plus à jour que les notebooks. Export statique pour le manuscrit : `uv run python scripts/export_figures.py` dans `dm_python_louis` (kaleido) → PNG + PDF vectoriel (à préférer pour LaTeX) dans `figures_export/`, style impression (palette validée CVD, serif, virgule décimale, sans titre embarqué). H3/H6/H7 restent sur les jpg LLM_Bias (pas de visu dans l'app).
 
 ## Compilation
 
