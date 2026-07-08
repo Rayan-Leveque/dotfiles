@@ -30,3 +30,4 @@
 
 - `LLM_Bias` — pipeline biais LLMs, ethnicity × SES
 - `llm_bridage_modeles` — bridage LLM sur restitution de contenu sensible (idextend)
+- `Manuscrit_M2` — mémoire M2 LaTeX, conformité AI Act des LLMs (biais + confiance), alternance idextend
