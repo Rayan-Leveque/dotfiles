@@ -40,7 +40,7 @@ Chaque section non rédigée porte une note italique « contenu prévu » (visib
 Ton et forme d'un mémoire académique français, cohérents avec l'existant :
 
 - **Langue** : français académique, registre soutenu mais lisible. Phrases claires, pas de remplissage. On (impersonnel) ou nous de modestie, en restant cohérent avec le chapitre en cours.
-- **Ponctuation** : pas de tiret cadratin ni de tiret comme signe de ponctuation dans la prose. Préférer virgules, deux-points, parenthèses ou point.
+- **Ponctuation** : limiter clairement le tiret en incise ou parenthèse (tiret cadratin `—`, double tiret `--`). Préférer virgules, parenthèses, deux-points ou une phrase séparée. Le tiret simple des mots composés reste normal.
 - **Typographie française** : espaces insécables avant `; : ! ?` et dans les nombres/unités ; guillemets `\og … \fg` (ou « … ») ; « AI Act », « on-premise », « open-weight » en romain (anglicismes assumés du domaine).
 - **Terminologie stable** (ne pas faire varier les termes clés) : *AI Act* (pas « IA Act »), *human oversight* / *HITL*, *score de confiance*, *biais implicite/comportemental*, *logprobs*, *calibration*, *Annexe III*, articles cités « art. 10 », « art. 14 »… Réutiliser exactement les formulations de `PLAN.md`.
 - **Structure d'argumentation** : chaque volet expérimental relie une exigence AI Act, une grandeur mesurable, un protocole et un résultat (logique du tableau pivot). Ne pas présenter un résultat sans son ancrage réglementaire.
