@@ -9,7 +9,7 @@ Documents de pilotage, à lire avant toute rédaction :
 
 Skill projet : `/handoff` (`.claude/skills/handoff/SKILL.md`) écrit `HANDOFF.md` (état des lieux de reprise) et met à jour `TODO.md` en fin de session.
 
-Les expériences (données, notebooks, figures sources) vivent hors de ce repo, dans `../Memoire_experiments/` (et `LLM_Bias/`).
+Les expériences (données, notebooks, figures sources) vivent hors de ce repo, dans `../Memoire_experiment/` : `LLM_Bias/` (volet biais H1–H4, H6, H7 : notebooks `h1_*.ipynb` à `h7_*.ipynb`, données `data/results/behavioral_results_*.csv`), `IAT_replication/` (H5 : D-score, sorties dans `output/`), `logprobs_evaluation/` (volet confiance). `../Projets_M2/dm_python_louis/` est une app Streamlit de visualisation sur une copie des mêmes données (plots Plotly descriptifs, sans tests statistiques ni export statique).
 
 ## Compilation
 
