@@ -7,6 +7,8 @@ Documents de pilotage, à lire avant toute rédaction :
 - **`TODO.md`** : liste vivante. Cocher et dater à chaque avancée (respecter le format existant, mettre à jour la ligne « Dernière mise à jour »).
 - **`README.md`** : commandes de compilation et dépendances.
 
+Skill projet : `/handoff` (`.claude/skills/handoff/SKILL.md`) écrit `HANDOFF.md` (état des lieux de reprise) et met à jour `TODO.md` en fin de session.
+
 Les expériences (données, notebooks, figures sources) vivent hors de ce repo, dans `../Memoire_experiments/` (et `LLM_Bias/`).
 
 ## Compilation
