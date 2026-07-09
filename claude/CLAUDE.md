@@ -15,6 +15,10 @@ Personal preferences that apply to every project.
 
 Treat AskUserQuestion as a first-class tool — use it liberally when uncertain rather than guessing.
 
+## Delegation
+
+Delegate independent subtasks to subagents and keep working while they run. Intervene if a subagent goes off track or is missing relevant context.
+
 ## Documentation
 
 After any substantial change to a codebase (new feature, config change, pipeline update, architecture decision), update the project's local CLAUDE.md **and README** to reflect the current state — including how to run scripts, launch commands, and any changed entry points — so future sessions start with an accurate picture.
