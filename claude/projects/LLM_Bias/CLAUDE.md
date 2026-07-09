@@ -10,14 +10,16 @@ Pour le setup et les commandes de lancement → voir README.md.
 - **`.venv/`** — pipeline uniquement (`openai`, `yaml`, vllm client). Toujours utiliser `.venv/bin/python`, jamais `python` ou `python3`.
 - **`/home/rayan/idextend/venv`** — analyse et Jupyter (`pandas`, `numpy`, `matplotlib`, `seaborn`, `scipy`, `plotly`). Lancer avec `/home/rayan/idextend/venv/bin/jupyter lab`.
 
-## État des runs (2026-05-27)
+## État des runs (2026-07-09)
 
 | Modèle | Steps complétés | Données |
 |---|---|---|
-| Qwen3.6-27B-FP8 | 3a + 3b + 3c | `behavioral_results.csv` (~43k lignes), `iat_ethnicity_a.csv`, `iat_ethnicity_c.csv` |
+| Qwen3.6-27B-FP8 | 3a + 3b (3c à relancer) | `behavioral_results.csv` (~43k lignes) |
 | Gemma-4-31B-it | 3a + 3b (partiel) | `behavioral_results_Gemma-4-31B-it.csv` (~6k lignes) |
 | Qwen3.7-max-Novita | — | En attente NOVITA_API_KEY |
 | Mistral-Nemo-Novita | — | En attente NOVITA_API_KEY |
+
+**IAT (2026-07-09)** : l'ancien design présentait les labels en deux blocs fixes (groupe français/riche toujours en premier) → confound ordre × groupe. Corrigé : les 10 labels des deux groupes sont fusionnés en une seule liste shufflée par itération (rng seedé, colonne `label_list` dans le CSV), cf. Bai et al. (2024). Les anciennes données (non comparables) sont archivées dans `data/results/legacy/iat_ethnicity_{a,c}_blocked_order.csv` — **tout le 3c est à relancer pour tous les modèles**.
 
 ## Gotchas critiques
 
