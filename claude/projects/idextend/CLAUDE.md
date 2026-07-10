@@ -31,14 +31,15 @@ Read it via `utils/config.py → get_config()`. Add new settings there instead o
   `vue_front/src/components/gltools/gl*.vue` (contract enforced by
   `modules/toolIntegrity.js`); cross-tool data flows through
   `modules/orchestrator.js` dataFeeds (`KNOWLEDGE_MAP`, `TIMELINE`, …).
-- NER entities list (`gl-NerList`): `DataPipelines/NerSummary.py → NerSummaryTask`
-  (last procedure of both ingestion pipelines) precomputes the 4 main categories
-  (PERSON, ORGANIZATION, DATE, LOCATION incl. `LOCATION_GEOCODABLE`) into
+- NER entities list (`gl-NerList`, dashboard-style cards): `DataPipelines/NerSummary.py
+  → NerSummaryTask` (last procedure of both ingestion pipelines) precomputes the
+  top 10 entities (by chunk occurrences) of the 4 main categories (PERSON,
+  ORGANIZATION, DATE, LOCATION incl. `LOCATION_GEOCODABLE`) into
   `<base_internal_data_path>/<case>/ner_summary.json` — the tool reads it via
   `GET /cases/<id>/ner_summary` instead of querying the graph; clicking an entity
-  hits `GET /cases/<id>/ner_focus/<rid>` which feeds `KNOWLEDGE_MAP`
-  (Knowledge/Tabular graph). File is absent until the first ingestion after this
-  feature landed.
+  hits `GET /cases/<id>/ner_focus/<rid>` (cypher: the node + everything directly
+  linked to it, `NER_direct_graph`) which feeds `KNOWLEDGE_MAP` (Knowledge/Tabular
+  graph). File is absent until the first ingestion after this feature landed.
 
 ## Gotchas
 
