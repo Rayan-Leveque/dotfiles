@@ -19,7 +19,7 @@ Pour le setup et les commandes de lancement → voir README.md.
 | Qwen3.7-max-Novita | — | En attente NOVITA_API_KEY |
 | Mistral-Nemo-Novita | — | En attente NOVITA_API_KEY |
 
-**IAT (2026-07-09)** : l'ancien design présentait les labels en deux blocs fixes (groupe français/riche toujours en premier) → confound ordre × groupe. Corrigé : les 10 labels des deux groupes sont fusionnés en une seule liste shufflée par itération (rng seedé, colonne `label_list` dans le CSV), cf. Bai et al. (2024). Les anciennes données (non comparables) sont archivées dans `data/results/legacy/iat_ethnicity_{a,c}_blocked_order.csv` — **tout le 3c est à relancer pour tous les modèles**.
+**IAT (2026-07-09)** : l'ancien design présentait les labels en deux blocs fixes (groupe français/riche toujours en premier) → confound ordre × groupe. Corrigé : les 10 labels des deux groupes sont fusionnés en une seule liste shufflée par itération (rng seedé, colonne `label_list` dans le CSV), cf. Bai et al. (2024). Les anciennes données (non comparables) sont archivées dans `data/results/legacy/iat_ethnicity_{a,c}_blocked_order.csv` — y compris les runs DeepSeek-Flash/Pro du 2026-07-10, générés avec l'ancien prompt — **tout le 3c est à relancer pour tous les modèles**. `run_iat.py` accepte `--workers N` pour paralléliser les appels API (merge du refactor ThreadPoolExecutor + fix shuffle, 2026-07-10).
 
 ## Gotchas critiques
 
