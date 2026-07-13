@@ -40,6 +40,11 @@ Read it via `utils/config.py → get_config()`. Add new settings there instead o
   hits `GET /cases/<id>/ner_focus/<rid>` (cypher: the node + everything directly
   linked to it, `NER_direct_graph`) which feeds `KNOWLEDGE_MAP` (Knowledge/Tabular
   graph). File is absent until the first ingestion after this feature landed.
+- Home dashboard `gl-Home` (in progress): full spec and ticket breakdown in
+  `docs/SPEC_gl-home.md` — read it before any work on the home screen. One
+  ticket = one branch = one MR; base branch is `feature/NER_list` until it
+  merges into `develop` (the NER feature only exists there). Sections marked
+  « A implementer plus tard » are backlog: do not implement them.
 
 ## Gotchas
 
