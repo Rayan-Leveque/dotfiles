@@ -50,6 +50,21 @@ else
   echo "✓ global : symlink créé → $GLOBAL_LINK"
 fi
 
+# --- Skills Claude ---
+SKILLS_SRC="$DOTFILES/claude/skills"
+SKILLS_LINK="$HOME/.claude/skills"
+if [ -d "$SKILLS_SRC" ]; then
+  if [ -L "$SKILLS_LINK" ]; then
+    echo "✓ skills : déjà liés"
+  elif [ -e "$SKILLS_LINK" ]; then
+    echo "⚠ skills : $SKILLS_LINK existe et n'est PAS un symlink — à arbitrer manuellement"
+  else
+    mkdir -p "$HOME/.claude"
+    ln -s "$SKILLS_SRC" "$SKILLS_LINK"
+    echo "✓ skills : symlink créé → $SKILLS_LINK"
+  fi
+fi
+
 # --- Symlinks projets ---
 # Liste des projets : noms entre backticks sous la section "## Projets" de setup.md
 PROJECTS=$(awk '/^## Projets/{f=1; next} f' "$DOTFILES/setup.md" \
