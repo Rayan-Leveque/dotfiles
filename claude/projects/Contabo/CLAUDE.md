@@ -52,6 +52,13 @@ Puis Safari iPhone → `http://100.116.111.35:8080`. Arrêt : `tmux kill-session
 - Mosh actif côté iPhone (gratuit dans Termius, toggle « Use Mosh », commande `mosh-server`)
 - Fix PATH `.zshenv` appliqué sur les deux serveurs (`ssh <host> claude` fonctionne partout)
 
+## Notifications push (ntfy)
+
+Sur contabo, hooks Claude Code (`~/.claude/settings.json` + `~/.claude/hooks/ntfy.sh`) :
+- `Notification` (Claude attend une permission / idle) → push priorité haute
+- `Stop` (tâche terminée) → push normale
+- Topic ntfy.sh : `rayan-claude-8735dc46` (nom aléatoire = seul rempart, ne pas le publier). App ntfy sur l'iPhone abonnée à ce topic.
+
 ## En attente / à savoir
 
 - ⚠️ Clé DeepSeek : retirée des `.zshenv` mais **pas encore révoquée** sur platform.deepseek.com (elle a fuité en transcript). Les pipelines LLM_Bias / llm_bridage_modeles (ancien vps) lisent `DEEPSEEK_API_KEY` — prévoir un `.env` projet si relance.
