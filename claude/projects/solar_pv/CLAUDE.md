@@ -16,9 +16,9 @@ météo + variables calendaires. `ac_power` interdite en variable explicative
   `create_final_dataset`), pour un projet noté sans exigence de couverture de
   tests — pas d'investissement au-delà.
 - **Bonus (sections 6-9 de l'énoncé : cascade `ac_power`, efficacité onduleur,
-  résidus) : non implémenté.** `core/models.py` (`split_train_test`, `evaluate`)
-  et `core/features.py` sont conçus pour être réutilisables tels quels si cette
-  section est ajoutée plus tard.
+  résidus) : implémenté.** `M_ac` est entraîné sur `dc_power` réel (train) et
+  évalué en cascade réaliste avec `dc_power_pred` (validation), conformément
+  à l'énoncé.
 - **Rapport : `report.md`**, à exporter en PDF par l'utilisateur avant rendu (4 pages max avec figures).
 
 ## Structure
@@ -27,10 +27,11 @@ Voir le README pour l'arborescence complète et les commandes `uv run ...`.
 
 ## État
 
-Projet complet : les 4 CSV du groupe 1 sont dans `data/raw/`, le notebook
-(`notebooks/analysis.ipynb`) s'exécute de bout en bout, `report.md` contient
-les résultats réels (RandomForestRegressor retenu, R² = 0.893 vs 0.884 pour
-LinearRegression ; `irradiation` domine l'importance des variables à 91 %).
-Tests (`uv run pytest`) passent. Reste à faire par l'utilisateur : exporter
-`report.md` en PDF (4 pages max) avant le rendu du 15 juillet 2025 ; le bonus
-(cascade `ac_power`, sections 6-9) n'est pas traité.
+Projet complet, y compris le bonus : les 4 CSV du groupe 1 sont dans
+`data/raw/`, le notebook (`notebooks/analysis.ipynb`, 38 cellules)
+s'exécute de bout en bout, `report.md` contient les résultats réels —
+RandomForestRegressor retenu pour `dc_power` (R² = 0.893 vs 0.884 pour
+LinearRegression ; `irradiation` domine l'importance des variables à 91 %),
+cascade `ac_power` avec R² = 0.8945. Tests (`uv run pytest`) passent. Reste
+à faire par l'utilisateur : exporter `report.md` en PDF (4 pages max) avant
+le rendu du 15 juillet 2025.
