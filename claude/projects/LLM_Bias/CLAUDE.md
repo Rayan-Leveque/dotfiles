@@ -22,6 +22,19 @@ Pour le setup et les commandes de lancement → voir README.md.
 
 **IAT (2026-07-09)** : l'ancien design présentait les labels en deux blocs fixes (groupe français/riche toujours en premier) → confound ordre × groupe. Corrigé : les 10 labels des deux groupes sont fusionnés en une seule liste shufflée par itération (rng seedé, colonne `label_list` dans le CSV), cf. Bai et al. (2024). Les anciennes données (non comparables) sont archivées dans `data/results/legacy/iat_ethnicity_{a,c}_blocked_order.csv` — y compris les runs DeepSeek-Flash/Pro du 2026-07-10, générés avec l'ancien prompt — **tout le 3c est à relancer pour tous les modèles**. `run_iat.py` accepte `--workers N` pour paralléliser les appels API (merge du refactor ThreadPoolExecutor + fix shuffle, 2026-07-10).
 
+## Éval comparative (3b) — gelée (2026-07-15)
+
+**Audit 2026-07-15** : 99,9 % des 1 912 choix vont au candidat A (présenté en premier), pour les 5 modèles testés (DeepSeek-Flash, DeepSeek-Pro, Gemma-4-31B-it, Qwen3.6-27B-FP8, Qwen3.7-max-Novita) — seule exception : 2 paires DeepSeek-Pro. Le parsing (`utils/parse_response.py::parse_comparative`) est correct — c'est le comportement réel des modèles. Cause structurelle : les deux CV sont identiques au mot près (seuls `nom_complet` et `condition` diffèrent) + température 0 → les modèles détectent l'égalité et tranchent par position (Gemma le verbalise : « Puisque les profils sont des copies conformes, le choix ne peut se baser sur une différence de compétences » → choisit A). Conséquence : `chose_french` est entièrement déterminé par l'ordre de présentation ; la « préférence nette ≈ 0 » en agrégé est un artefact du contrebalancement, **pas** une preuve d'équité.
+
+**Décision** : données existantes **gardées**, requalifiées en mesure du **biais de position** (cf. Zheng et al. 2023, position bias des LLM-juges) — résultat méthodologique du mémoire (choix forcé entre candidats indiscernables = mesure de la position, pas de la préférence ethnique). Protocole 3b **gelé** : ne plus le relancer en l'état, ne pas compléter les 37 paires manquantes DeepSeek-Pro (163/200). L'argument central reste la dissociation à trois niveaux : IAT = stéréotype fort sur les adresses, éval individuelle = écart faible, comparatif = rien (position) — cohérent avec la littérature biais implicites vs mesures explicites. Pour rappel, 3a est saine (taux d'acceptation 39–53 %, pas d'effet plafond).
+
+**Voie future pour une vraie mesure comparative (si besoin), par ordre d'efficacité** :
+1. **Logprobs sans CoT** : prompt « Réponds uniquement par A ou B », lire P(A) vs P(B) au premier token, préférence = P(français) moyennée sur les deux ordres (annule la position, garde le signal). Réutilise profils et paires existants ; supporté par vLLM et l'API DeepSeek. Notebook exploratoire : `../logprobs_evaluation/analyse_logprobs.ipynb`.
+2. Température > 0 (ex. 1.0) avec N répétitions par paire → estimer P(choisit français) au lieu d'un argmax déterministe.
+3. CV équivalents mais non identiques (testing par correspondance réel — DARES, ISM Corum) : deux variantes de même niveau, contrebalancées ; coûteux, à valider.
+
+**Micro-fix noté (non appliqué)** : `parse_comparative` utilise `re.search` → prend la PREMIÈRE occurrence de « Candidat retenu » ; préférer la dernière (le modèle peut employer la formule dans son CoT).
+
 ## Gotchas critiques
 
 1. **IAT + modèles thinking (Qwen3)** : toujours ajouter `--no-think` pour l'étape `--step 3c`. Sans ça, le mode thinking consomme tous les tokens → `finish_reason=length` → crash.
