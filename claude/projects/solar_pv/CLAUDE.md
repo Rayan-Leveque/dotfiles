@@ -27,6 +27,10 @@ Voir le README pour l'arborescence complète et les commandes `uv run ...`.
 
 ## État
 
-Le squelette du projet (core/, utils/, notebooks/, tests/) est en place et
-testé (`uv run pytest`). Le notebook ne peut pas encore être exécuté de bout
-en bout : les CSV du groupe 1 ne sont pas encore présents dans `data/raw/`.
+Projet complet : les 4 CSV du groupe 1 sont dans `data/raw/`, le notebook
+(`notebooks/analysis.ipynb`) s'exécute de bout en bout, `report.md` contient
+les résultats réels (RandomForestRegressor retenu, R² = 0.893 vs 0.884 pour
+LinearRegression ; `irradiation` domine l'importance des variables à 91 %).
+Tests (`uv run pytest`) passent. Reste à faire par l'utilisateur : exporter
+`report.md` en PDF (4 pages max) avant le rendu du 15 juillet 2025 ; le bonus
+(cascade `ac_power`, sections 6-9) n'est pas traité.
