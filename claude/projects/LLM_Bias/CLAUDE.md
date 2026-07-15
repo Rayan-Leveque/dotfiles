@@ -10,11 +10,11 @@ Pour le setup et les commandes de lancement → voir README.md.
 - **`.venv/`** — pipeline uniquement (`openai`, `yaml`, vllm client). Toujours utiliser `.venv/bin/python`, jamais `python` ou `python3`.
 - **`/home/rayan/idextend/venv`** — analyse et Jupyter (`pandas`, `numpy`, `matplotlib`, `seaborn`, `scipy`, `plotly`). Lancer avec `/home/rayan/idextend/venv/bin/jupyter lab`.
 
-## État des runs (2026-07-13)
+## État des runs (2026-07-15)
 
 | Modèle | Steps complétés | Données |
 |---|---|---|
-| Qwen3.6-27B-FP8 | 3a + 3b (3c à relancer — **poids absents de cette machine**, ~28 Go à télécharger) | `behavioral_results.csv` (~43k lignes) |
+| Qwen3.6-27B-FP8 | 3a + 3b + **3c nouveau design (2026-07-15, 50 iters × variants a/c, 1 seule assoc non parsée sur 1600)** | `behavioral_results.csv` (~43k lignes) + `iat_ethnicity_{a,c}.csv` |
 | Gemma-4-31B-it | 3a + 3b (partiel) + **3c nouveau design (2026-07-13, 50 iters × variants a/c, 100 % parsed)** | `behavioral_results_Gemma-4-31B-it.csv` (~6k lignes) + `iat_ethnicity_{a,c}.csv` |
 | Qwen3.7-max-Novita | — | En attente NOVITA_API_KEY (le `.env` du repo a des valeurs **vides**) |
 | Mistral-Nemo-Novita | — | En attente NOVITA_API_KEY |
