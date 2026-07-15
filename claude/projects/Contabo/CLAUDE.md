@@ -45,9 +45,15 @@ tmux new -d -s files "cd ~/Postuler && python3 -m http.server 8080 --bind 100.11
 
 Puis Safari iPhone → `http://100.116.111.35:8080`. Arrêt : `tmux kill-session -t files`. Peut rester allumé en permanence sans risque.
 
+## Confort système (2026-07-15)
+
+- contabo : swap 4 Go (`/swapfile`, swappiness 10), timezone Europe/Paris
+- tmux (les deux serveurs) : `mouse on` (scroll tactile dans Termius), historique 50k lignes
+- Mosh actif côté iPhone (gratuit dans Termius, toggle « Use Mosh », commande `mosh-server`)
+- Fix PATH `.zshenv` appliqué sur les deux serveurs (`ssh <host> claude` fonctionne partout)
+
 ## En attente / à savoir
 
-- ⚠️ Clé API DeepSeek en clair dans `~/.zshenv` (les deux serveurs) — à faire tourner
-- L'ancien `vps` n'a PAS le fix PATH dans `.zshenv` (donc `ssh vps claude` échoue ; utiliser `ssh -t vps` puis lancer claude)
-- Mosh : gratuit dans Termius (toggle « Use Mosh » du host) et prêt côté serveur (udp 60000:61000 ouvert)
+- ⚠️ Clé DeepSeek : retirée des `.zshenv` mais **pas encore révoquée** sur platform.deepseek.com (elle a fuité en transcript). Les pipelines LLM_Bias / llm_bridage_modeles (ancien vps) lisent `DEEPSEEK_API_KEY` — prévoir un `.env` projet si relance.
+- Ancien vps : sudo demande un mot de passe (pas de NOPASSWD) ; timezone encore en UTC
 - Non répliqué sur contabo : TeXLive, Maven, .NET, bench-claude/bench-opencode
