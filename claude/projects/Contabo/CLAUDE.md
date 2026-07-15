@@ -49,5 +49,5 @@ Puis Safari iPhone → `http://100.116.111.35:8080`. Arrêt : `tmux kill-session
 
 - ⚠️ Clé API DeepSeek en clair dans `~/.zshenv` (les deux serveurs) — à faire tourner
 - L'ancien `vps` n'a PAS le fix PATH dans `.zshenv` (donc `ssh vps claude` échoue ; utiliser `ssh -t vps` puis lancer claude)
-- Mosh prêt côté serveur ; côté iPhone il faut Blink (payant) ou Termius premium — pas activé pour l'instant
+- Mosh : gratuit dans Termius (toggle « Use Mosh » du host) et prêt côté serveur (udp 60000:61000 ouvert)
 - Non répliqué sur contabo : TeXLive, Maven, .NET, bench-claude/bench-opencode
