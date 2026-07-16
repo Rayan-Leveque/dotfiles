@@ -33,15 +33,20 @@ Read it via `utils/config.py → get_config()`. Add new settings there instead o
   `modules/orchestrator.js` dataFeeds (`KNOWLEDGE_MAP`, `TIMELINE`, …).
 - NER entities list (`gl-NerList`, dashboard-style cards): `DataPipelines/NerSummary.py
   → NerSummaryTask` (last procedure of both ingestion pipelines) precomputes the
-  top 10 entities (by chunk occurrences) of the 4 main categories (PERSON,
+  the configured top entities (`[NER] ner_summary_top_n`, default 10; by chunk
+  occurrences) of the 4 main categories (PERSON,
   ORGANIZATION, DATE, LOCATION incl. `LOCATION_GEOCODABLE`) into
   `<base_internal_data_path>/<case>/ner_summary.json` — the tool reads it via
   `GET /cases/<id>/ner_summary` instead of querying the graph; clicking an entity
   hits `GET /cases/<id>/ner_focus/<rid>` (cypher: the node + everything directly
   linked to it, `NER_direct_graph`) which feeds `KNOWLEDGE_MAP` (Knowledge/Tabular
   graph). File is absent until the first ingestion after this feature landed.
-- Home dashboard `gl-Home` (in progress): full spec and ticket breakdown in
-  `docs/SPEC_gl-home.md` — read it before any work on the home screen. One
+- Home dashboard `gl-Home` (Phase 1 implemented): top entities can open and
+  populate the Knowledge graph, the read-only documents panel uses
+  `GET /cases/<id>/documents_light`, and Home opens automatically when no saved
+  workspace exists. The compatible `gl-Dashboard` component is displayed as
+  “Ingestion”. Full spec and ticket breakdown are in `docs/SPEC_gl-home.md` —
+  read it before any work on the home screen. One
   ticket = one branch = one MR; base branch is `feature/NER_list` until it
   merges into `develop` (the NER feature only exists there). Sections marked
   « A implementer plus tard » are backlog: do not implement them.
