@@ -40,6 +40,33 @@ Les deux : Ubuntu 24.04, user `rayan` (sudo NOPASSWD), **port 2222**, clé uniqu
 
 Le terminal n'affiche pas d'images. Serveur de fichiers privé (visible uniquement via Tailscale, rien d'exposé publiquement) :
 
+⚠️ **Vérifier le port au préalable** — plusieurs `http.server` tournent déjà en permanence (ex: 8080 sur `~/Postuler`, 8081 sur un autre projet). Un port déjà pris donne un 404 trompeur (c'est l'ancien serveur qui répond, pas d'erreur de bind visible si lancé en arrière-plan sans vérifier le log) :
+
+```bash
+ps aux | grep "http.server" | grep -v grep   # ports déjà utilisés
+```
+
+⚠️ **Accents cassés sur Safari iPhone (mojibake `é`→`Ã©`)** : `python3 -m http.server` n'envoie pas de `charset=utf-8` dans le `Content-Type` pour les fichiers texte/markdown, Safari devine mal l'encodage. Utiliser plutôt un handler qui force le charset :
+
+```python
+# ~/bin/serve_utf8.py
+import http.server, sys
+
+class UTF8Handler(http.server.SimpleHTTPRequestHandler):
+    def send_header(self, keyword, value):
+        if keyword == "Content-type" and "charset" not in value and value.startswith("text/"):
+            value += "; charset=utf-8"
+        super().send_header(keyword, value)
+
+if __name__ == "__main__":
+    http.server.test(HandlerClass=UTF8Handler, port=int(sys.argv[1]), bind=sys.argv[2])
+```
+```bash
+tmux new -d -s files "cd ~/Postuler && python3 ~/bin/serve_utf8.py 8080 100.116.111.35"
+```
+
+Puis choisir un port libre :
+
 ```bash
 tmux new -d -s files "cd ~/Postuler && python3 -m http.server 8080 --bind 100.116.111.35"
 ```
