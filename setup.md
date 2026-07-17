@@ -14,13 +14,18 @@
    - Si le fichier existe déjà mais n'est pas un symlink : demande avant d'écraser
    - Vérifie aussi qu'il est bien suivi par git : `cd ~/dotfiles && git ls-files claude/CLAUDE.md`
 
-3. **Pour chaque projet listé dans `## Projets`** :
+3. **Vérifie le contexte machine** (`~/.claude/machine.md`) :
+   - Le CLAUDE.md global l'importe via `@~/.claude/machine.md` ; ce doit être un symlink vers `~/dotfiles/claude/machines/<machine>.md` (`mac.md` si `uname` = Darwin, sinon `contabo.md`).
+   - `sync.sh` le crée automatiquement ; à la main : `ln -s ~/dotfiles/claude/machines/contabo.md ~/.claude/machine.md`
+   - Nouvelle machine : créer d'abord son fichier dans `~/dotfiles/claude/machines/` et adapter la sélection dans `sync.sh`.
+
+4. **Pour chaque projet listé dans `## Projets`** :
    - Cherche où ce projet existe sur cette machine : `find ~ -maxdepth 6 -name <projet> -type d 2>/dev/null`
    - Si trouvé et que le symlink `<chemin>/CLAUDE.md` n'existe pas encore : crée-le avec `ln -s ~/dotfiles/claude/projects/<projet>/CLAUDE.md <chemin>/CLAUDE.md`
    - Si le fichier existe déjà mais n'est pas un symlink : demande avant d'écraser
    - Si non trouvé : note-le comme absent sur cette machine
 
-4. **Affiche un récapitulatif** :
+5. **Affiche un récapitulatif** :
    - ✓ CLAUDE.md global : symlink OK / créé
    - ✓ Déjà à jour / mis à jour
    - ✓ Symlinks créés

@@ -50,6 +50,26 @@ else
   echo "✓ global : symlink créé → $GLOBAL_LINK"
 fi
 
+# --- Machine context (importé par le CLAUDE.md global via @~/.claude/machine.md) ---
+if [ "$(uname)" = "Darwin" ]; then
+  MACHINE_SRC="$DOTFILES/claude/machines/mac.md"
+else
+  MACHINE_SRC="$DOTFILES/claude/machines/contabo.md"
+fi
+MACHINE_LINK="$HOME/.claude/machine.md"
+if [ ! -f "$MACHINE_SRC" ]; then
+  echo "✗ machine : pas de source $MACHINE_SRC dans dotfiles"
+elif [ -L "$MACHINE_LINK" ]; then
+  echo "✓ machine : déjà lié"
+elif [ -e "$MACHINE_LINK" ]; then
+  echo "⚠ machine : machine.md existe et n'est PAS un symlink → $MACHINE_LINK"
+  CONFLICTS+=("machine|$MACHINE_LINK|$MACHINE_SRC")
+else
+  mkdir -p "$(dirname "$MACHINE_LINK")"
+  ln -s "$MACHINE_SRC" "$MACHINE_LINK"
+  echo "✓ machine : symlink créé → $MACHINE_LINK"
+fi
+
 # --- Skills Claude ---
 SKILLS_SRC="$DOTFILES/claude/skills"
 SKILLS_LINK="$HOME/.claude/skills"
