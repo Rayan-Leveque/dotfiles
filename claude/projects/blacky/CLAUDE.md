@@ -22,4 +22,5 @@ App de comptage entrées/boissons pour association. Next.js 15 / TypeScript / Pr
 
 - PostgreSQL 16 local (port 5432), bases `blacky_dev` / `blacky_test`, rôle `blacky`. Connexion via `DATABASE_URL` de `.env` (peer auth désactivée pour ce rôle : toujours passer l'URL à `psql`).
 - Accès utilisateur via Tailscale (`tailscale ip -4`) — les Artifacts claude.ai ne fonctionnent pas pour lui ; utiliser le skill projet `serve-tailscale` pour montrer des fichiers live.
+- Exposition publique (activée 2026-07-17 pour partage) : Tailscale Funnel proxy le port 3000 sur `https://vmi3441682.tail6d4461.ts.net`. Désactiver : `sudo tailscale funnel --https=443 off`. Le funnel survit aux restarts de Next mais l'app n'a aucune auth à part le slug secret.
 - L'`accessSlug` de l'association de test est sensible : le lire en base si besoin, ne pas le republier.
