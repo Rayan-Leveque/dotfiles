@@ -85,7 +85,8 @@ Puis Safari iPhone → `http://100.116.111.35:8080`. Arrêt : `tmux kill-session
 
 Sur contabo, hooks Claude Code (`~/.claude/settings.json` + `~/.claude/hooks/ntfy.sh`) :
 - `Notification` (Claude attend une permission / idle) → push priorité haute
-- `Stop` (tâche terminée) → push normale
+- `Stop` (tâche terminée) → push normale, avec en corps le **dernier message texte de Claude** (extrait du `transcript_path`, tronqué à 400 car.)
+- Tap sur la notif (header `Click:`) → ouvre Termius via `ssh://rayan@100.116.111.35:2222` (IP Tailscale)
 - Topic ntfy.sh : `rayan-claude-8735dc46` (nom aléatoire = seul rempart, ne pas le publier). App ntfy sur l'iPhone abonnée à ce topic.
 
 ## En attente / à savoir
