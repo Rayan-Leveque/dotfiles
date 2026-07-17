@@ -25,6 +25,7 @@ Les deux : Ubuntu 24.04, user `rayan` (sudo NOPASSWD), **port 2222**, clé uniqu
 - `~/.zshenv` exporte `~/.local/bin` dans le PATH (nécessaire pour `ssh contabo claude` non-interactif)
 - Scripts : `~/bin/codemac`, `~/.local/bin/yoloclaude`
 - spec-kit (GitHub) installé sur Mac + contabo : `specify init . --integration claude` dans un projet → commandes `/speckit.specify`, `/speckit.plan`, `/speckit.tasks`, `/speckit.implement`… (màj : `uv tool upgrade specify-cli`)
+- Statusline **claude-hud** (2026-07-17) : plugin `claude-hud@claude-hud` + bun (`~/.bun/bin/bun`), `statusLine` dans `~/.claude/settings.json`, prefs copiées du Mac (`~/.claude/plugins/claude-hud/config.json`) — même widget modèle/contexte que sur le Mac
 - `~/dotfiles` cloné (clé GitHub propre au serveur), cron 9h de `git pull`, `bash ~/dotfiles/sync.sh` pour relier les CLAUDE.md
 - `~/Postuler` cloné (aussi sur le Mac : `~/Documents/ADM_CLAUDE/Postuler`) — **git pull en début de session, push à la fin**, sinon les deux copies divergent
 
