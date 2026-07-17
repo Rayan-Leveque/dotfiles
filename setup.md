@@ -34,3 +34,4 @@
 - `Manuscrit_M2` — mémoire M2 LaTeX, conformité AI Act des LLMs (biais + confiance), alternance idextend
 - `Contabo` — doc des VPS (contabo neuf + vps ancien) : accès, sécurité, Tailscale, workflow Claude Code depuis l'iPhone
 - `solar_pv` — projet M2 : prévision de la production solaire (dc_power) à partir de météo, dans le monorepo `Projets_M2`
+- `blacky` — app Next.js de comptage entrées/boissons pour association ; règle : implémentation par `codex` uniquement, Claude (Fable) en revue
