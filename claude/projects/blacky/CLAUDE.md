@@ -16,6 +16,7 @@ App de comptage entrées/boissons pour association. Next.js 15 / TypeScript / Pr
 - Typecheck : `npx tsc --noEmit`
 - Build prod : `npx next build` puis `npx next start -H 0.0.0.0 -p 3000` (lié sur toutes les interfaces pour l'accès Tailscale)
 - Le serveur tourne en mode production : après tout changement de code, rebuild + restart nécessaires pour le voir.
+- Restart sûr : `pgrep -f next-server | xargs -r kill` puis relancer `next start` en nohup, puis **vérifier le log de démarrage** (piège déjà rencontré : sous zsh `kill $PID` multi-lignes ne tue rien → EADDRINUSE silencieux, l'ancien process sert un build périmé → ChunkLoadError côté client).
 
 ## Environnement
 
