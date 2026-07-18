@@ -16,7 +16,20 @@ App de comptage entrées/boissons pour association : « événements récurrents
 - Typecheck : `npx tsc --noEmit`
 - Build prod : `npx next build` puis `npx next start -H 0.0.0.0 -p 3000` (lié sur toutes les interfaces pour l'accès Tailscale)
 - Le serveur tourne en mode production : après tout changement de code, rebuild + restart nécessaires pour le voir.
-- Restart sûr : `pgrep -f "next-serve[r]" | xargs -r kill` puis relancer `next start` en nohup, puis **vérifier le log de démarrage**. Deux pièges déjà rencontrés : (1) sous zsh `kill $PID` multi-lignes ne tue rien → EADDRINUSE silencieux, l'ancien process sert un build périmé → ChunkLoadError côté client ; (2) le pattern sans `[r]` matche la ligne de commande du shell Bash-tool lui-même → le kill tue la commande en cours (exit 144) avant le relancement.
+
+## Push en prod (procédure éprouvée — a marché à chaque update des features 002 à 004)
+
+`blacky_dev` **est la base de prod** : pendant le dev, les migrations ne s'appliquent qu'à `blacky_test` (`DATABASE_URL="$TEST_DATABASE_URL" npx prisma migrate deploy`). `blacky_dev` n'est migrée qu'au moment de la bascule, serveur arrêté. Ordre :
+
+1. **Vérifier avant** : `npx tsc --noEmit` et `npx vitest run` verts.
+2. **S'il y a une migration avec backfill** : relever les totaux sur `blacky_dev` via psql (`source .env` puis `psql "$DATABASE_URL" -c ...` — éviter `export $(grep ...)` et le quoting imbriqué, ça déclenche le classifieur de permissions) pour comparaison après.
+3. **Build** : `npx next build` (l'ancien serveur peut tourner pendant le build — fenêtre d'incohérence d'assets courte et acceptable ; un build en échec avant la bascule = rien n'est cassé). Piège connu : un fichier `route.ts` qui exporte autre chose que des handlers casse le build — les helpers vont dans `src/lib/`.
+4. **Stop** : `pgrep -f "next-serve[r]" | xargs -r kill` (le `[r]` est indispensable — sans lui le pattern matche le shell Bash-tool lui-même et tue la commande en cours, exit 144). Le classifieur auto-mode peut bloquer ce kill : demander l'autorisation à l'utilisateur, pré-acquise en général en début de session (voir mémoire `deploy-permission-kill`).
+5. **Migrer** (seulement maintenant) : `npx prisma migrate deploy` (DATABASE_URL par défaut = blacky_dev). Vérifier les totaux post-migration vs relevé de l'étape 2.
+6. **Start** : `nohup npx next start -H 0.0.0.0 -p 3000 > /tmp/blacky-next.log 2>&1 &` puis **lire le log** (`tail /tmp/blacky-next.log` : attendre `✓ Ready`, pas d'EADDRINUSE — un kill raté laisse l'ancien process servir un build périmé → ChunkLoadError côté client).
+7. **Vérifier** : `curl` 200 sur la page et les routes clés, funnel public en 200, puis `npx playwright test` (la config `webServer.reuseExistingServer` fait tourner l'E2E contre le serveur fraîchement déployé ; il seed une association jetable dans blacky_dev et la supprime).
+
+Migration additive (colonnes nullables) : la même séquence s'applique, c'est juste plus tolérant. Sans migration : sauter les étapes 2 et 5.
 
 ## Environnement
 
