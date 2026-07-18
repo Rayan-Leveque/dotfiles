@@ -1,6 +1,6 @@
 # blacky — CLAUDE.md
 
-App de comptage entrées/boissons pour association, avec types de soirée configurables, occurrences datées et catégories d’entrées. Les actions sont journalisées dans `CountAction` et chaque appareil peut annuler ses dernières actions (pas de bouton -1). Next.js 15 / TypeScript / Prisma / PostgreSQL. Spec Kit workflow dans `specs/001-headcount-drink-tracking/` et `specs/002-event-types-undo/`, design system dans `DESIGN.md`.
+App de comptage entrées/boissons pour association, avec types de soirée configurables (prix optionnels en centimes par article), occurrences datées et catégories d’entrées. Les actions sont journalisées dans `CountAction` et chaque appareil peut annuler ses dernières actions (pas de bouton -1). Totaux en euros sur la page cachée `/a/{accessSlug}/recettes` (hors navigation, lien discret en bas de la config). Next.js 15 / TypeScript / Prisma / PostgreSQL. Spec Kit workflow dans `specs/001-headcount-drink-tracking/`, `specs/002-event-types-undo/` et `specs/003-prices-ui-density/`, design system dans `DESIGN.md`.
 
 ## Workflow d'implémentation (règle stricte)
 
