@@ -1,6 +1,6 @@
 # blacky — CLAUDE.md
 
-App de comptage entrées/boissons pour association. Next.js 15 / TypeScript / Prisma / PostgreSQL. Spec Kit workflow dans `specs/001-headcount-drink-tracking/`, design system dans `DESIGN.md`.
+App de comptage entrées/boissons pour association, avec types de soirée configurables, occurrences datées et catégories d’entrées. Les actions sont journalisées dans `CountAction` et chaque appareil peut annuler ses dernières actions (pas de bouton -1). Next.js 15 / TypeScript / Prisma / PostgreSQL. Spec Kit workflow dans `specs/001-headcount-drink-tracking/` et `specs/002-event-types-undo/`, design system dans `DESIGN.md`.
 
 ## Workflow d'implémentation (règle stricte)
 
