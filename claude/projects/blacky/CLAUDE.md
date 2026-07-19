@@ -6,13 +6,11 @@ App de comptage entrées/boissons pour association : « événements récurrents
 
 Le repo est versionné (commit initial `69da841`, branche `master`, pas de remote pour l'instant). **Committer à chaque changement** (une feature/correction = un commit) sans demander. Le toast de confirmation d'annulation (appui long) et le sheet persistant font partie de l'état commité initial.
 
-## Workflow d'implémentation (règle stricte)
+## Workflow d'implémentation
 
-**Toute implémentation de code dans ce repo doit être faite par `codex` (modèle `gpt-5.6-sol`), jamais par Claude directement. Claude (Fable) se limite à la revue du code produit.**
+**Depuis le 2026-07-19 : l'implémentation est faite par Claude directement** (l'ancienne règle « codex implémente, Claude relit » est abandonnée sur demande utilisateur). Codex peut encore servir ponctuellement d'auditeur externe (`codex exec -s danger-full-access`, sandbox bwrap cassé dans ce container — voir mémoire `codex-orchestration-retex`). Note : `gpt-5.6-sol` est indisponible en auth ChatGPT Plus (limitation serveur OpenAI, issue codex#31905) — codex tourne sur `gpt-5.6-terra`.
 
-- Lancer codex via Bash avec `-s danger-full-access` (le sandbox bwrap est cassé dans ce container — permission pré-autorisée, voir mémoire `codex-orchestration-retex`).
-- Prudence avec les agents multiples : si plusieurs sessions codex tournent en parallèle, surveiller la duplication de code entre sessions (problème déjà observé lors de l'implémentation initiale).
-- Après implémentation codex, Fable relit le diff (audit léger : peu d'angles, une passe de lecture partagée — voir mémoire `audit-token-cost`).
+Audit codex du 2026-07-19 → specs **007** (auth serveur gestion + PIN haché), **008** (file offline idempotente), **009** (clôture soirée UI + gardes transactionnelles + archivage cohérent + export CSV) rédigées, à implémenter dans cet ordre (007 et 008 corrigent les deux constats critiques ; 009/US4 dépend de 007). Constats d'audit restants non spécifiés : durcissement headers HTTP, validation Zod centralisée, logging serveur structuré, pagination history/revenue, mises à jour Prisma/PostCSS (3 vulns npm hautes), Prettier sur 30 fichiers.
 
 ## Commandes
 
