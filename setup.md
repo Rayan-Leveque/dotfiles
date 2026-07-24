@@ -40,3 +40,4 @@
 - `Contabo` — doc des VPS (contabo neuf + vps ancien) : accès, sécurité, Tailscale, workflow Claude Code depuis l'iPhone
 - `solar_pv` — projet M2 : prévision de la production solaire (dc_power) à partir de météo, dans le monorepo `Projets_M2`
 - `blacky` — app Next.js de comptage entrées/boissons pour association ; règle : implémentation par `codex` uniquement, Claude (Fable) en revue
+- `plongee` — backend API (FastAPI/uv) pour une app de plongée, clients web/iOS/Android prévus en projets séparés
